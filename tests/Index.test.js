@@ -1,3 +1,5 @@
+const { generateLogo } = require('../Index.js');
+jest.mock('../Generator', () => jest.fn());
 const inquirer = require('inquirer');
 const fs = require('fs');
 const mockConsole = require('jest-mock-console');
@@ -22,7 +24,7 @@ describe('Main Application', () => {
       shapeColor: 'blue'
     });
 
-    const app = require('../Index.js');
+    await generateLogo(); 
 
     expect(fs.existsSync('logo.svg')).toBeTruthy();
     expect(console.log).toHaveBeenCalledWith('Generated logo.svg');

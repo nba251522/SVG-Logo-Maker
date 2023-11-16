@@ -2,7 +2,7 @@ const fs = require('fs');
 const generateSVG = require('../Generator');
 
 describe('SVG Generator', () => {
-  
+
   afterEach(() => {
     if (fs.existsSync('logo.svg')) {
       fs.unlinkSync('logo.svg');
@@ -10,9 +10,13 @@ describe('SVG Generator', () => {
   });
 
   test('generateSVG creates an SVG file named logo.svg', () => {
-    const mockShapeSVG = () => '<mockShape></mockShape>';
-    generateSVG('TXT', 'white', mockShapeSVG, 'blue');
+    jest.mock('../Shapes.js', () => ({
+        circleSVG: () => '<mockShape></mockShape>',
+        triangleSVG: jest.fn(),
+        squareSVG: jest.fn()
+      }));
 
+    generateSVG('TXT', 'white', 'circle', 'blue');  
     expect(fs.existsSync('logo.svg')).toBeTruthy();
 
     const content = fs.readFileSync('logo.svg', 'utf8');

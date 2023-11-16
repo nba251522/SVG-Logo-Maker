@@ -26,7 +26,18 @@ const questions = [
   }
 ];
 
-inquirer.prompt(questions).then(answers => {
-  generateSVG(answers.text, answers.textColor, answers.shape, answers.shapeColor);
-  console.log('Generated logo.svg');
-});
+const generateLogo = async () => {
+  try {
+    const answers = await inquirer.prompt(questions);
+    generateSVG(answers.text, answers.textColor, answers.shape, answers.shapeColor);
+    console.log('Generated logo.svg');
+  } catch (error) {
+    console.error("Error generating logo:", error);
+  }
+};
+
+module.exports = { generateLogo };
+
+if (require.main === module) {
+    generateLogo();
+  }
