@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const generateSVG = require('./Generator');
+const generateSVG = require('./library/Generator');
 
 const questions = [
   {

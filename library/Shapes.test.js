@@ -1,4 +1,4 @@
-const { circleSVG, triangleSVG, squareSVG } = require('../Shapes');
+const { circleSVG, triangleSVG, squareSVG } = require('./Shapes');
 
 describe('Shapes Module', () => {
   test('circleSVG generates correct SVG with given color', () => {
