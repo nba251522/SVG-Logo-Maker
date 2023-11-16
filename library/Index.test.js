@@ -1,5 +1,4 @@
 const { generateLogo } = require('../Index.js');
-jest.mock('../Generator', () => jest.fn());
 const inquirer = require('inquirer');
 const fs = require('fs');
 const mockConsole = require('jest-mock-console');
